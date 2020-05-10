@@ -1,0 +1,20 @@
+class Solution:
+    def minAddToMakeValid(self, S: str) -> int:
+        
+        l = []
+        
+        for i in S:
+            
+            if l:
+                if l[-1] == ")":
+                    l.append(i)
+                else:
+                    if (i == ")"):
+                        l.pop()
+                    else:
+                        l.append(i)
+            else:
+                l.append(i)
+        
+        return(len(l))
+            
