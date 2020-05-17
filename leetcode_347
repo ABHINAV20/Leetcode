@@ -1,0 +1,21 @@
+from collections import defaultdict
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        d = defaultdict(int)
+        res = []
+        for i in nums:
+            if (d[i]):
+                d[i]+=1
+            else:
+                d[i] = 1
+        list_key = list(d.keys())
+        list_value = list(d.values())
+        #print(list_value)
+        list_value.sort(reverse=True)
+        #print(list_value)
+        list_value = list_value[:k]
+        for key,value in d.items():
+            if(value in list_value):
+                res.append(key)
+        return(res)
+                
