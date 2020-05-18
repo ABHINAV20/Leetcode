@@ -1,0 +1,21 @@
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        
+        l = []
+        for i in nums:
+            if(i>0):
+                l.append(i)
+        if (len(l)==0):
+            return(1)
+        l = set(l)
+        l = list(l)
+        l.sort()
+        j = 1
+        for i in l:
+            if (i==j):
+                j+=1
+            else:
+                return(j)
+        return(j)
+        
+        
