@@ -1,0 +1,13 @@
+class Solution:
+
+    def __init__(self):
+        self.l = []
+        
+    def inorderTraversal(self, root: TreeNode) -> List[int]:
+        
+        if not root:
+            return
+        self.inorderTraversal(root.left)
+        self.l.append(root.val)
+        self.inorderTraversal(root.right)
+        return(self.l)
