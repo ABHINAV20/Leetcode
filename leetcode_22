@@ -1,0 +1,14 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        
+        l,r,s= 0,0,""
+        bfs  = [(l,r,s)]
+        for _ in range(n*2):
+            new = []
+            for l,r,s  in bfs:
+                if (l+1<=n):
+                    new.append((l+1,r,s+"("))
+                if (l-r):
+                    new.append((l,r+1,s+")"))
+            bfs = new
+        return[s for l,r,s in bfs]
