@@ -1,0 +1,33 @@
+#With Recursion
+class Solution:
+    
+    def compute(self,left,right):
+        if not left or not right:
+            return
+        left.next = right
+        self.compute(left.right,right.left)
+        self.compute(left.left,left.right)
+        self.compute(right.left,right.right)
+        
+        
+    def connect(self, root: 'Node') -> 'Node':
+        
+        if not root:
+            return 
+        self.compute(root.left,root.right)
+        return(root)
+
+#Without Recursion
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        
+        if not root:
+            return(root)
+        curr_level,prev_level = [root],[]
+        
+        while (curr_level):
+            
+            prev_level,curr_level = curr_level, [node for i in curr_level for node in (i.left,i.right) if node]
+            for i in range(len(prev_level)-1):
+                prev_level[i].next = prev_level[i+1]
+        return(root)
