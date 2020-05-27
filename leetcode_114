@@ -1,0 +1,18 @@
+class Solution:
+    def flatten(self, root: TreeNode) -> None:
+        queue = []
+        if not root:
+            return          
+        queue = self.traverse(root,queue)
+        for i in range(len(queue)-1):
+            queue[i].left = None
+            queue[i].right = queue[i+1]
+        
+    def traverse(self,root,queue):
+        if not root:
+            return
+        queue.append(root)
+        self.traverse(root.left,queue)
+        self.traverse(root.right,queue)
+        return(queue)
+        
