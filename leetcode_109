@@ -1,0 +1,25 @@
+class Solution:
+    def sortedListToBST(self, head: ListNode) -> TreeNode:
+        arr = []
+        while(head):
+            arr.append(head.val)
+            head = head.next
+        n = len(arr)
+        if (n==0):
+            return(None)
+        root = TreeNode()
+        return(self.makeBST(arr,root))
+    
+    def makeBST(self,arr,root):
+        n = len(arr)
+        if (n==0):
+            return
+        if (n==1):
+            m = 0
+        m = int(n/2)
+        root = TreeNode(arr[m])            
+        root.left = self.makeBST(arr[:m],root.left)
+        root.right = self.makeBST(arr[m+1:],root.right)
+        return(root)
+        
+        
