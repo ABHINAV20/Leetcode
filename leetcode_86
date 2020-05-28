@@ -1,0 +1,23 @@
+class Solution:
+    def partition(self, head: ListNode, x: int) -> ListNode:
+        if not head:
+            return(None)
+        small = ListNode()
+        smallHead = small
+        large = ListNode()
+        largeHead = large
+        while(head):
+            if (head.val<x):
+                smallHead.next = ListNode(head.val)
+                smallHead = smallHead.next
+            else:
+                largeHead.next = ListNode(head.val)
+                largeHead = largeHead.next
+            head = head.next
+        if small.next and large.next:
+            smallHead.next = large.next
+            return(small.next)
+        if small.next and not large.next:
+            return(small.next)
+        if not small.next and large:
+            return(large.next)
