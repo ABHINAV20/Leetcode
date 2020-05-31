@@ -1,0 +1,9 @@
+class Solution:
+    def rightSideView(self, root: TreeNode) -> List[int]:
+        if not root:
+            return([])
+        res = []
+        prec_level,curr_level = [],[root]
+        while(curr_level):
+            res.append(curr_level[-1].val)
+            prev_level,curr_level = curr_level, [node for i in curr_level for node in (i.left,i.right) if node]
