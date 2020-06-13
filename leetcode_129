@@ -1,0 +1,22 @@
+class Solution:
+    def sumNumbers(self, root: TreeNode) -> int:
+        res = []
+        s = ""
+        if not root:
+            return 0
+        def calc(root,s):
+            if not root:
+                return
+            s = s+str(root.val)
+            if (not root.left and not root.right):
+                return s
+            res.append(calc(root.left,s))
+            res.append(calc(root.right,s))
+            return(res)
+        l = calc(root,s)
+        ans = []
+        for i in l:
+            if type(i) == str:
+                ans.append(int(i))
+        return(sum(ans))                
+        
