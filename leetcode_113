@@ -1,0 +1,21 @@
+class Solution:
+    def pathSum(self, root: TreeNode, sum: int) -> List[List[int]]:
+        
+        if not root:
+            return []
+        l = []
+        ans = []
+        self.findPath(root,sum,l,ans)
+        return ans
+        
+    def findPath(self,root,s,l,ans):
+        if not root:
+            return
+        if not root.right and not root.left and s==root.val:
+            l.append(root.val)
+            ans.append(l)
+            return 
+        l.append(root.val)
+        
+        self.findPath(root.left,s-root.val,l[:],ans)
+        self.findPath(root.right,s-root.val,l[:],ans)
