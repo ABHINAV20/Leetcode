@@ -1,0 +1,11 @@
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        if root is None:
+            return
+        curr_lev, prev_lev = [root],[]
+        while(curr_lev):
+            prev_lev, curr_lev = curr_lev, [node for i in curr_lev for node in (i.left, i.right) if node]
+            for i in range(len(prev_lev)-1):
+                prev_lev[i].next = prev_lev[i+1]
+            prev_lev[-1].next = None
+        return (root)
